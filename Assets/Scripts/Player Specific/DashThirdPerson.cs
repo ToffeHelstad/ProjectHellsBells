@@ -12,7 +12,7 @@ public class DashThirdPerson : MonoBehaviour
     public float dashSpeed = 20f;                                                           //Public variable for Dash speed
     [Tooltip("Decides how long dash will last. Default is 0.25")]
     public float dashTime = 0.25f;                                                          //Public variable for how long Dash will last
-
+    public ParticleSystem particles;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +32,16 @@ public class DashThirdPerson : MonoBehaviour
     {
         float startTime = Time.time;
 
-        while(Time.time < startTime + dashTime)
+        particles.Play();
+
+        while (Time.time < startTime + dashTime)
         {
             moveScript.controller.Move(moveScript.moveDir * dashSpeed * Time.deltaTime);
+            
             Debug.Log("Dashing");
 
             yield return null;
         }
+        
     }
 }

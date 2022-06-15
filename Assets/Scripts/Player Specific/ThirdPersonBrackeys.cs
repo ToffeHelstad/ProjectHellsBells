@@ -36,13 +36,15 @@ public class ThirdPersonBrackeys : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
     public Vector3 moveDir;
-   
-    
+
+    public Vector3 startPos;
 
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        startPos = transform.position;
+
     }
 
     void Update()
@@ -77,6 +79,11 @@ public class ThirdPersonBrackeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = startPos;
         }
      
     }
