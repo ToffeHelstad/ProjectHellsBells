@@ -24,10 +24,14 @@ public class ThirdPersonMovement : MonoBehaviour
     private CharacterController cc;                     //Reference to Character Controller component on object
     private Vector3 velocity;                           //Variables for velocity
 
-    private Quaternion rotation;
+    [Header("Rotation")]
+    public float turnSmoothTime = 0.1f;
+    private float turnSmoothVelocity;
 
-    [HideInInspector]
-    public Vector3 movementDir;
+    [Header("Camera")]
+    public Transform cam;
+
+    Vector3 direction;
 
     void Start()
     {
@@ -51,14 +55,14 @@ public class ThirdPersonMovement : MonoBehaviour
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
-        movementDir = ((transform.right * x) + (transform.forward * z)).normalized;
+        Vector3 direction = new Vector3(x, 0f, z).normalized;
 
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && direction.magnitude >= 0.1f)
         {
             Run();
         }
-        else
+        else if(direction.magnitude >= 0.1f)
         {
             Move();
         }
@@ -66,14 +70,22 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private void Move()
     {
-        Vector3 motion = movementDir * walkSpeed * Time.deltaTime;
-        cc.Move(motion);
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+        Vector3 motion = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        cc.Move(motion.normalized*walkSpeed*Time.deltaTime);
         
     }
 
     private void Run()
     {
-        Vector3 motion = movementDir * runSpeed * Time.deltaTime;
-        cc.Move(motion);
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+        Vector3 motion = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        cc.Move(motion.normalized * runSpeed * Time.deltaTime);
     }
 }
