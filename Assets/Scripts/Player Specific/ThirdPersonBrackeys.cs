@@ -33,9 +33,9 @@ public class ThirdPersonBrackeys : MonoBehaviour
     
 
 
-    private CharacterController controller;
+    public CharacterController controller;
     public Transform cam;
-
+    public Vector3 moveDir;
    
     
 
@@ -66,11 +66,11 @@ public class ThirdPersonBrackeys : MonoBehaviour
 
         if(direction.magnitude >= 0.1f)                                             //if the direction variable is greater than 0.1
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;//returns rotational value
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;      //returns rotational value
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * walkSpeed * Time.deltaTime);                    //Moves the character controller
         }
 
