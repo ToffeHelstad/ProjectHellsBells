@@ -39,6 +39,9 @@ public class ThirdPersonBrackeys : MonoBehaviour
 
     public Vector3 startPos;
 
+    public Animator moveAnim;
+    public bool moving;
+
 
     void Start()
     {
@@ -74,6 +77,11 @@ public class ThirdPersonBrackeys : MonoBehaviour
 
             moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * walkSpeed * Time.deltaTime);                    //Moves the character controller
+            moving = true;
+        }
+        else
+        {
+            moving = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -84,6 +92,15 @@ public class ThirdPersonBrackeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             transform.position = startPos;
+        }
+
+        if (moving == true)
+        {
+            moveAnim.SetBool("Running", true);
+        }
+        else
+        {
+            moveAnim.SetBool("Running", false);
         }
      
     }
