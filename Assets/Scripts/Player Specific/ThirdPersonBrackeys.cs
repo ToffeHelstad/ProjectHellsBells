@@ -102,7 +102,15 @@ public class ThirdPersonBrackeys : MonoBehaviour
         {
             moveAnim.SetBool("Running", false);
         }
-     
+
+        if (isGrounded == false)
+        {
+            moveAnim.SetBool("Falling", true);
+        }
+        else
+        {
+            moveAnim.SetBool("Falling", false);
+        }
     }
 
     void Jump()
@@ -110,5 +118,6 @@ public class ThirdPersonBrackeys : MonoBehaviour
         Debug.Log("Jumping");
         jumpYPos = transform.position.y;
         velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityConstant * gravityMultiplier);
+        moveAnim.SetTrigger("Jump");
     }
 }
