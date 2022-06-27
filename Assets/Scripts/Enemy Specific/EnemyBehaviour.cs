@@ -25,9 +25,12 @@ public class EnemyBehaviour : MonoBehaviour
     private bool waiting = false;
     private GameObject self;
 
+    public ParticleSystem hitParticles;
+
     void Start()
     {
         self = gameObject;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -71,4 +74,11 @@ public class EnemyBehaviour : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Sword")
+        {
+            hitParticles.Play();
+        }
+    }
 }
