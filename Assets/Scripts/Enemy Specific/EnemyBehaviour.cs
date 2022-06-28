@@ -4,37 +4,55 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public GameObject player;
-
-    public int speed;
-
-    [Header("Gravity")]
-    public float gravityMultiplier;
-    private float gravityConstant = -9.71f;
+    [Header("Other Objects")]
+    [Tooltip("Pull in particle system for when enemy gets hit here.")]
+    public ParticleSystem hitParticles;
 
     [Header("GroundCheck")]
     public Transform groundCheck;
     public LayerMask groundLayer;
     public bool isGrounded;
 
+    [Header("Enemy Variables")]
+    [Tooltip("Speed of enemy")]
+    public int speed;
+
+    [Header("Despawn range")]
+    [Tooltip("How far away the player has to be from the enemy before it despawns.")]
     public float range;
 
+    [Header("Gravity")]
+    public float gravityMultiplier = 1f;
+    private float gravityConstant = -9.71f;
+
+    [Header("Health")]
+    [Tooltip("Health that enemy starts with starts with")]
+    public int startingHP;
+    [Tooltip("How much HP the enemy currently has")]
+    public int currentHP;
+    [Tooltip("How much health the enemy has taken")]
+    public int damageTaken = 0;
+
+    //Private variables
+    private GameObject player;
     private Vector3 velocity;
     private Vector3 movementDir;
 
     private bool waiting = false;
     private GameObject self;
 
-    public ParticleSystem hitParticles;
+    
 
     void Start()
     {
         self = gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
+        currentHP = startingHP;
     }
 
     void Update()
     {
+
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundLayer);
         velocity.y += Vector3.Distance(player.transform.position, transform.position);
 
@@ -56,6 +74,13 @@ public class EnemyBehaviour : MonoBehaviour
             waiting = false;
             StopAllCoroutines();
             Move();
+        }
+
+        currentHP = startingHP - damageTaken;
+
+        if (currentHP == 0)
+        {
+            Destroy(self);
         }
     }
 
@@ -79,6 +104,12 @@ public class EnemyBehaviour : MonoBehaviour
         if (collision.collider.tag == "Sword")
         {
             hitParticles.Play();
+            TakeDamage();
         }
+    }
+
+    void TakeDamage()
+    {
+        damageTaken += 100;
     }
 }
