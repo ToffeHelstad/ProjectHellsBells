@@ -24,6 +24,11 @@ public class EnemyBehaviourJonas : MonoBehaviour
         myHealth.OnHeal.AddListener(OnHeal);
     }
 
+    public void FindPlayerTarget()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     void Update()
     {
         agent.destination = target.position;

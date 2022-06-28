@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0808548d9439ee47947581c681053df, type: 3}
+  m_Name: 2_ActiveTest_Sweep
+  m_EditorClassIdentifier: 
+  id: 2
+  powerupName: Sweep
+  powerUpObject: {fileID: 7449242470349331232, guid: da941b9b8b7bb6d48a9067b6502d8951,
+    type: 3}
