@@ -256,7 +256,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh40960
+  m_Name: pb_Mesh46426
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -421,14 +421,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 229530535, guid: c7566aa391a824844aa8512d74330738, type: 3}
-      propertyPath: hitPause
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 897394890, guid: c7566aa391a824844aa8512d74330738, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 759984825}
     - target: {fileID: 4693484022412849451, guid: c7566aa391a824844aa8512d74330738,
         type: 3}
       propertyPath: m_Name
@@ -489,6 +481,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5546780841462250413, guid: c7566aa391a824844aa8512d74330738,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 759984825}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7566aa391a824844aa8512d74330738, type: 3}
 --- !u!4 &183597432 stripped
@@ -1172,6 +1169,7 @@ GameObject:
   - component: {fileID: 1005504124}
   - component: {fileID: 1005504123}
   - component: {fileID: 1005504125}
+  - component: {fileID: 1005504126}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -1331,6 +1329,22 @@ MonoBehaviour:
   m_Damping: 0.6
   m_DampingWhenOccluded: 0.6
   m_OptimalTargetDistance: 0
+--- !u!114 &1005504126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005504122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+  XYAxis: {fileID: -5441425019713007701, guid: 4f150a9715cc515449b16a97ed8a7851, type: 3}
+  ZAxis: {fileID: 0}
 --- !u!850595691 &1155285821
 LightingSettings:
   m_ObjectHideFlags: 0
