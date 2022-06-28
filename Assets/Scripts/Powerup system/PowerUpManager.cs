@@ -25,6 +25,11 @@ public class PowerUpManager : MonoBehaviour
                 PowerUpPassive newPassive = (PowerUpPassive)newPowerup;
                 GameObject powerUpClone = Instantiate(newPassive.powerUpObject, powerUpParent);
             }
+            else if (newPowerup is PowerUpActive)
+            {
+                PowerUpActive newPassive = (PowerUpActive)newPowerup;
+                GameObject powerUpClone = Instantiate(newPassive.powerUpObject, powerUpParent);
+            }
         }
         else
         {
