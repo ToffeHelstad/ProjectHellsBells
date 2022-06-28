@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wc: {fileID: 888480854}
-  hitPause: 0.1
+  hitPause: 0.25
 --- !u!1 &484080205
 GameObject:
   m_ObjectHideFlags: 0

@@ -256,7 +256,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh40960
+  m_Name: pb_Mesh46426
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -421,14 +421,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 229530535, guid: c7566aa391a824844aa8512d74330738, type: 3}
-      propertyPath: hitPause
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 897394890, guid: c7566aa391a824844aa8512d74330738, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 759984825}
     - target: {fileID: 4693484022412849451, guid: c7566aa391a824844aa8512d74330738,
         type: 3}
       propertyPath: m_Name
@@ -489,6 +481,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5546780841462250413, guid: c7566aa391a824844aa8512d74330738,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 759984825}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7566aa391a824844aa8512d74330738, type: 3}
 --- !u!4 &183597432 stripped
@@ -767,7 +764,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658952648}
-  m_LocalRotation: {x: 0.017524658, y: -0.8288165, z: 0.026000086, w: 0.55864143}
+  m_LocalRotation: {x: 0.017524658, y: -0.8288165, z: 0.026000088, w: 0.55864143}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1055,7 +1052,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759984822}
-  m_LocalRotation: {x: 0.0073603545, y: -0.8291522, z: 0.010920033, w: 0.5588677}
+  m_LocalRotation: {x: 0.0073603536, y: -0.8291522, z: 0.010920033, w: 0.5588677}
   m_LocalPosition: {x: -32.936226, y: 170.6, z: -13.332635}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1172,6 +1169,7 @@ GameObject:
   - component: {fileID: 1005504124}
   - component: {fileID: 1005504123}
   - component: {fileID: 1005504125}
+  - component: {fileID: 1005504126}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -1331,6 +1329,22 @@ MonoBehaviour:
   m_Damping: 0.6
   m_DampingWhenOccluded: 0.6
   m_OptimalTargetDistance: 0
+--- !u!114 &1005504126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005504122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+  XYAxis: {fileID: -5441425019713007701, guid: 4f150a9715cc515449b16a97ed8a7851, type: 3}
+  ZAxis: {fileID: 0}
 --- !u!850595691 &1155285821
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1895,7 +1909,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299027370}
-  m_LocalRotation: {x: 0.007360356, y: -0.8291522, z: 0.0109200375, w: 0.55886775}
+  m_LocalRotation: {x: 0.007360355, y: -0.8291522, z: 0.010920037, w: 0.55886775}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2148,124 +2162,3 @@ Transform:
   m_Father: {fileID: 1005504124}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2062835154 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4693484022412849451, guid: c7566aa391a824844aa8512d74330738,
-    type: 3}
-  m_PrefabInstance: {fileID: 183597431}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2062835156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062835154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4f150a9715cc515449b16a97ed8a7851,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2062835158}
-        m_TargetAssemblyTypeName: NEWINPUTThirdPerson, Assembly-CSharp
-        m_MethodName: Move
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f431e62e-3fb7-4eb7-9fa5-01b0945d0cdc
-    m_ActionName: Player/Horizontal[/DualSenseGamepadHID/leftStick/right,/DualSenseGamepadHID/leftStick/left]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2062835158}
-        m_TargetAssemblyTypeName: NEWINPUTThirdPerson, Assembly-CSharp
-        m_MethodName: Move
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 83955202-5190-427d-abb2-0788978f36aa
-    m_ActionName: Player/Vertical[/DualSenseGamepadHID/leftStick/down,/DualSenseGamepadHID/leftStick/up]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b06a7378-2593-4c7e-b2e3-ca2557da856b
-    m_ActionName: UI/Navigate[/DualSenseGamepadHID/leftStick/up,/DualSenseGamepadHID/rightStick/up,/DualSenseGamepadHID/leftStick/down,/DualSenseGamepadHID/rightStick/down,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/rightStick/left,/DualSenseGamepadHID/leftStick/right,/DualSenseGamepadHID/rightStick/right,/DualSenseGamepadHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 389e4264-b0e5-436a-815a-2e53cc8c3a7b
-    m_ActionName: UI/Submit[/Keyboard/enter,/DualSenseGamepadHID/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ac31143e-6ab4-4694-9cd7-3fbbdb2c83fe
-    m_ActionName: UI/Cancel[/Keyboard/escape,/DualSenseGamepadHID/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bbd23236-22e4-4dc7-b94c-238f32971234
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5f2e6366-83b2-45c0-af59-e53cdf57d719
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4c991bed-6415-4102-889b-8d6b5ec1d350
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a30660dd-495d-4a9b-b9f1-367c75cfad65
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7d06ee15-e01e-4a3c-a2db-d8b97dd66bb0
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3b492184-d5ba-4ac4-acad-97180348c32a
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f0ca5b9b-e016-4cb8-8c38-add8cb0e358a
-    m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &2062835158 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5546780841462250413, guid: c7566aa391a824844aa8512d74330738,
-    type: 3}
-  m_PrefabInstance: {fileID: 183597431}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062835154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22bd4ebb4d6c20649a6d22e880259fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

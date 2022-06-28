@@ -2721,12 +2721,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &489584969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4693484022412849451, guid: c7566aa391a824844aa8512d74330738,
-    type: 3}
-  m_PrefabInstance: {fileID: 1166590063}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &924997786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,37 +3071,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1166590063}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &928014214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489584969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4f150a9715cc515449b16a97ed8a7851,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!43 &1000048341
 Mesh:
   m_ObjectHideFlags: 0
@@ -3966,6 +3929,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5546780841462250413, guid: c7566aa391a824844aa8512d74330738,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1251181980}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7566aa391a824844aa8512d74330738, type: 3}
 --- !u!4 &1251181980 stripped
@@ -4568,6 +4536,28 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
+--- !u!1 &1913635364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5442376995359556645, guid: 6b1f598bed03e4945b13403396fbf878,
+    type: 3}
+  m_PrefabInstance: {fileID: 5442376995625493487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1913635368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913635364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+  XYAxis: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  ZAxis: {fileID: 0}
 --- !u!43 &1940905784
 Mesh:
   m_ObjectHideFlags: 0
@@ -6039,22 +6029,22 @@ PrefabInstance:
     - target: {fileID: 5442376995558454503, guid: 6b1f598bed03e4945b13403396fbf878,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0032476387
+      value: 0.0032476399
       objectReference: {fileID: 0}
     - target: {fileID: 5442376995558454503, guid: 6b1f598bed03e4945b13403396fbf878,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0024197917
+      value: 0.0024197926
       objectReference: {fileID: 0}
     - target: {fileID: 5442376995738660907, guid: 6b1f598bed03e4945b13403396fbf878,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.017832868
+      value: 0.017832847
       objectReference: {fileID: 0}
     - target: {fileID: 5442376995738660907, guid: 6b1f598bed03e4945b13403396fbf878,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.01328714
+      value: 0.013287124
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b1f598bed03e4945b13403396fbf878, type: 3}

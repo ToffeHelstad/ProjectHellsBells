@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +32,8 @@ public class NEWINPUTThirdPerson : MonoBehaviour
     public float jumpHeight;
     private float jumpYPos;
 
-    public PlayerChar playerChar;
+    private PlayerChar playerChar;
+    private InputAction movement;
 
 
     public CharacterController controller;
@@ -43,19 +45,29 @@ public class NEWINPUTThirdPerson : MonoBehaviour
     public Animator moveAnim;
     public bool moving;
 
+    private void Awake()
+    {
+        playerChar = new PlayerChar();
+    }
+
     private void OnEnable()
     {
-        playerChar.Enable();
+        movement = playerChar.Player.Movement;
+        movement.Enable();
+
+        playerChar.Player.Jump.performed += DoJump;
+        playerChar.Player.Jump.Enable();
+    }
+
+    private void DoJump(InputAction.CallbackContext obj)
+    {
+        Jump();
     }
 
     private void OnDisable()
     {
-        playerChar.Disable();
-    }
-
-    private void Awake()
-    {
-        playerChar = new PlayerChar();
+        movement.Disable();
+        playerChar.Player.Jump.Disable();
     }
 
     void Start()
@@ -91,14 +103,6 @@ public class NEWINPUTThirdPerson : MonoBehaviour
             transform.position = startPos;
         }
 
-        if (moving == true)
-        {
-            moveAnim.SetBool("Running", true);
-        }
-        else
-        {
-            moveAnim.SetBool("Running", false);
-        }
 
         if (isGrounded == false)
         {
@@ -118,27 +122,41 @@ public class NEWINPUTThirdPerson : MonoBehaviour
         moveAnim.SetTrigger("Jump");
     }
 
-    //public void Move()
-    //{
-    //    controller.Move(velocity * Time.deltaTime);
+    public void Move()
+    {
+        controller.Move(velocity * Time.deltaTime);
 
-    //    float horizontal = playerChar.Player.Horizontal.ReadValue<float>();
-    //    float vertical = playerChar.Player.Vertical.ReadValue<float>();                              //Input for vertical movement
-    //    Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;       //Creates a directional variable bazed on which axes is used and normalizes it
+        float horizontal = movement.ReadValue<Vector2>().y;
+        float vertical = movement.ReadValue<Vector2>().x;                              //Input for vertical movement
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;       //Creates a directional variable bazed on which axes is used and normalizes it
 
-    //    if (direction.magnitude >= 0.1f)                                             //if the direction variable is greater than 0.1
-    //    {
-    //        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;      //returns rotational value
-    //        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-    //        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        if (direction.magnitude >= 0.1f)                                             //if the direction variable is greater than 0.1
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;      //returns rotational value
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-    //        moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-    //        controller.Move(moveDir.normalized * walkSpeed * Time.deltaTime);                    //Moves the character controller
-    //        moving = true;
-    //    }
-    //    else
-    //    {
-    //        moving = false;
-    //    }
-    //}
+            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            controller.Move(moveDir.normalized * walkSpeed * Time.deltaTime);                    //Moves the character controller
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+
+        if (moving == true)
+        {
+            moveAnim.SetBool("Running", true);
+        }
+        else
+        {
+            moveAnim.SetBool("Running", false);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
 }
