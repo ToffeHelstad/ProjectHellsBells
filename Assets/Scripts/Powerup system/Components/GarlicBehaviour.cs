@@ -36,7 +36,7 @@ public class GarlicBehaviour : PowerUpComponent
     {
         foreach (EntityHealth enemy in enemiesInRange)
         {
-            enemy.DamageMe(damage);
+            if(enemy != null) enemy.DamageMe(damage);
         }
 
         timer = damageInterval;

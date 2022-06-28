@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 7
-  damage: 100
+  damage: 50
   damageInterval: 0.5
 --- !u!135 &303504097854251975
 SphereCollider:

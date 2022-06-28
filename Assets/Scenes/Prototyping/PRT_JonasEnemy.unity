@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 133569211}
   - component: {fileID: 133569210}
   - component: {fileID: 133569209}
+  - component: {fileID: 133569215}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Enemy
@@ -234,6 +235,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   TagToCheckFor: Sword
+  dmgTextPopupPrefab: {fileID: 3569548558914033716, guid: e7f5a8b274cfc8e40a41d687c4803615,
+    type: 3}
 --- !u!136 &133569211
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -320,6 +323,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133569207}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!210 &133569215
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133569207}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &211348157
 GameObject:
   m_ObjectHideFlags: 3
@@ -2975,7 +2989,7 @@ BoxCollider:
   m_GameObject: {fileID: 668036081}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 1.0000008, z: 1.000001}
   m_Center: {x: -0.000000029802322, y: 0.0000009536743, z: -0.0000038146973}
@@ -3111,6 +3125,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   TagToCheckFor: Sword
+  dmgTextPopupPrefab: {fileID: 3569548558914033716, guid: e7f5a8b274cfc8e40a41d687c4803615,
+    type: 3}
 --- !u!136 &744763187
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6890,7 +6906,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364925590}
-  m_LocalRotation: {x: 0.053322714, y: -0.010912988, z: 0.0005827741, w: 0.9985176}
+  m_LocalRotation: {x: 0.053322714, y: -0.010912984, z: 0.0005827739, w: 0.9985176}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12220,7 +12236,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632707600}
-  m_LocalRotation: {x: 0.05332271, y: -0.010912988, z: 0.00058277394, w: 0.9985176}
+  m_LocalRotation: {x: 0.05332271, y: -0.010912983, z: 0.00058277376, w: 0.9985176}
   m_LocalPosition: {x: 0, y: 8.46, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17598,6 +17614,7 @@ GameObject:
   - component: {fileID: 1945720462}
   - component: {fileID: 1945720461}
   - component: {fileID: 1945720460}
+  - component: {fileID: 1945720466}
   m_Layer: 0
   m_Name: Enemy (2)
   m_TagString: Enemy
@@ -17659,6 +17676,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   TagToCheckFor: Sword
+  dmgTextPopupPrefab: {fileID: 3569548558914033716, guid: e7f5a8b274cfc8e40a41d687c4803615,
+    type: 3}
 --- !u!136 &1945720462
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17745,6 +17764,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945720458}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!210 &1945720466
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945720458}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &1985298445
 GameObject:
   m_ObjectHideFlags: 0
@@ -29112,6 +29142,7 @@ GameObject:
   - component: {fileID: 8248425822370462973}
   - component: {fileID: 8248425822370462978}
   - component: {fileID: 8248425822370462976}
+  - component: {fileID: 8248425822370462979}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -29178,6 +29209,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   TagToCheckFor: Sword
+  dmgTextPopupPrefab: {fileID: 3569548558914033716, guid: e7f5a8b274cfc8e40a41d687c4803615,
+    type: 3}
+--- !u!210 &8248425822370462979
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248425822370462975}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!199 &8904185218632470458
 ParticleSystemRenderer:
   serializedVersion: 6

@@ -11,7 +11,11 @@ public class EntityHealth : MonoBehaviour
     //Events for tracking damage, death and heal
     [HideInInspector] public UnityEvent<int> OnDamage, OnDead, OnHeal;
 
+    //Which tag to check for when dealing damage
     [SerializeField] private string TagToCheckFor;
+
+    //Prefab for instantiating dmg text
+    [SerializeField] private GameObject dmgTextPopupPrefab;
 
     private void Awake()
     {
@@ -29,6 +33,10 @@ public class EntityHealth : MonoBehaviour
     {
         currentHealth -= dmgValue;
         OnDamage.Invoke(dmgValue);
+
+        GameObject dmgText = Instantiate(dmgTextPopupPrefab, transform.position, Quaternion.identity);
+        dmgText.GetComponentInChildren<TMPro.TextMeshPro>().text = dmgValue.ToString();
+        //Destroy(dmgText, .6f);
 
         if (currentHealth <= 0) OnDead.Invoke(dmgValue);
     }
