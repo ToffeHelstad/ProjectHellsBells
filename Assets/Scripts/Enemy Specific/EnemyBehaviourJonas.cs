@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(EntityHealth))]
+[RequireComponent(typeof(EntityHealth))] //Requires an EntityHealth component to work. Attaches itself to an object when this script is attached
 public class EnemyBehaviourJonas : MonoBehaviour
 {
     private NavMeshAgent agent; //NavMeshAgent
@@ -19,14 +19,20 @@ public class EnemyBehaviourJonas : MonoBehaviour
 
     void Start()
     {
+        //Subscribes to EntityHealth events!
         myHealth.OnDamage.AddListener(OnDamage);
         myHealth.OnDead.AddListener(OnDead);
         myHealth.OnHeal.AddListener(OnHeal);
     }
 
+    public void FindPlayerTarget() //When instantiated, find the player and makes that its target
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     void Update()
     {
-        agent.destination = target.position;
+        agent.destination = target.position; //follow player plz
     }
 
     private void OnDamage(int dmgValue)

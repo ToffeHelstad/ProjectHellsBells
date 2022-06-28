@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CursorBehaviour : MonoBehaviour
 {
+    //A simple script to turn on/off cursor visibility and lockstate. Toggle with escape.
+
     private bool cursorEnabled;
 
     private void Start()
