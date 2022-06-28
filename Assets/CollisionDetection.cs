@@ -7,14 +7,6 @@ public class CollisionDetection : MonoBehaviour
     public CombatScript wc;
     public float hitPause = 0.1f;
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Enemy")
-    //    {
-    //        Debug.Log("Hit!");
-    //    }
-    //}
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Enemy")
