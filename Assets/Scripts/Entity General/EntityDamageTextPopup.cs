@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EntityDamageTextPopup : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //This script simply exists to make dmg popups look at camera, and destroy itself afer a given time
+
     void Start()
     {
         Destroy(this.gameObject, .6f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.LookAt(Camera.main.transform);
