@@ -43,6 +43,15 @@ public class NEWINPUTThirdPerson : MonoBehaviour
     public Animator moveAnim;
     public bool moving;
 
+    private void OnEnable()
+    {
+        playerChar.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerChar.Disable();
+    }
 
     private void Awake()
     {
@@ -109,27 +118,27 @@ public class NEWINPUTThirdPerson : MonoBehaviour
         moveAnim.SetTrigger("Jump");
     }
 
-    public void Move()
-    {
-        controller.Move(velocity * Time.deltaTime);
+    //public void Move()
+    //{
+    //    controller.Move(velocity * Time.deltaTime);
 
-        float horizontal = playerChar.Player.Horizontal.ReadValue<float>();
-        float vertical = playerChar.Player.Vertical.ReadValue<float>();                              //Input for vertical movement
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;       //Creates a directional variable bazed on which axes is used and normalizes it
+    //    float horizontal = playerChar.Player.Horizontal.ReadValue<float>();
+    //    float vertical = playerChar.Player.Vertical.ReadValue<float>();                              //Input for vertical movement
+    //    Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;       //Creates a directional variable bazed on which axes is used and normalizes it
 
-        if (direction.magnitude >= 0.1f)                                             //if the direction variable is greater than 0.1
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;      //returns rotational value
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    //    if (direction.magnitude >= 0.1f)                                             //if the direction variable is greater than 0.1
+    //    {
+    //        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;      //returns rotational value
+    //        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+    //        transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir.normalized * walkSpeed * Time.deltaTime);                    //Moves the character controller
-            moving = true;
-        }
-        else
-        {
-            moving = false;
-        }
-    }
+    //        moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+    //        controller.Move(moveDir.normalized * walkSpeed * Time.deltaTime);                    //Moves the character controller
+    //        moving = true;
+    //    }
+    //    else
+    //    {
+    //        moving = false;
+    //    }
+    //}
 }
