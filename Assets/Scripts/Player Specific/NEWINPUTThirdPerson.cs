@@ -4,77 +4,63 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]                             //Adds character controller if its not there already
+[RequireComponent(typeof(CombatScript))]                                    //Adds combat script if its not there already
+[RequireComponent(typeof(DashThirdPerson))]                                 //Adds Dash script if its not there already
 public class NEWINPUTThirdPerson : MonoBehaviour
 {
     [Header("Gravity")]
     [Tooltip("Adds gravity. Default is: 1")]
-    public float gravityMultiplier = 1f;                 //Sets a gravity multiplier
+    public float gravityMultiplier = 1f;                                    //Sets a gravity multiplier
     [Tooltip("Drag GroundCheck object here")]
-    public Transform groundCheck;                       //Reference to object that checks if the ground is under the player
+    public Transform groundCheck;                                           //Reference to object that checks if the ground is under the player
     [Tooltip("Select layer that is set as ground level")]
-    public LayerMask groundLayer;                       //Reference to which layer is "ground"
+    public LayerMask groundLayer;                                           //Reference to which layer is "ground"
     [Tooltip("Is the player on the ground?")]
-    public bool isGrounded;                             //bool that confirms if the player is grounded
+    public bool isGrounded;                                                 //bool that confirms if the player is grounded
 
     [Header("Speed")]
     [Tooltip("Sets walkspeed. Default is: 6")]
-    public float walkSpeed = 6f;                                             //Variable for walkSpeed
+    public float walkSpeed = 6f;                                            //Variable for walkSpeed
 
-    private float gravityConstant = -9.71f;             //Sets a constant for gravity calculations
-    private CharacterController cc;                     //Reference to Character Controller component on object
-    private Vector3 velocity;                           //Variables for velocity
+    //Gravity Variables
+    private float gravityConstant = -9.71f;                                 //Sets a constant for gravity calculations
+    private Vector3 velocity;                                               //Variables for velocity
 
     [Header("Rotation")]
-    public float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
+    [Tooltip("How smooth the playerObject rotates with the camerarotation. Defaults to 0.1")]
+    public float turnSmoothTime = 0.1f;                                     //Sets how fast Player turns when camera rotates
+    private float turnSmoothVelocity;                                       //Honestly unsure what this one does lol
+    [HideInInspector]
+    public Vector3 moveDir;                                                 //Creates cordinates of what direction player is facing
 
     [Header("Jump")]
-    public float jumpHeight;
-    private float jumpYPos;
+    [Tooltip("How high the player jumps.")]
+    public float jumpHeight;                                                //Sets how high player jumps                                               
+
+    [Header("Camera")]
+    [Tooltip("Drag in Main Camera here.")]
+    public Transform MainCamera;
+    [HideInInspector]
+    public CharacterController controller;
 
     private PlayerChar playerChar;
     private InputAction movement;
 
+    private Animator moveAnim;
+    private bool moving;
 
-    public CharacterController controller;
-    public Transform cam;
-    public Vector3 moveDir;
-
-    public Vector3 startPos;
-
-    public Animator moveAnim;
-    public bool moving;
-
-    private void Awake()
-    {
-        playerChar = new PlayerChar();
-    }
-
-    private void OnEnable()
-    {
-        movement = playerChar.Player.Movement;
-        movement.Enable();
-
-        playerChar.Player.Jump.performed += DoJump;
-        playerChar.Player.Jump.Enable();
-    }
-
-    private void DoJump(InputAction.CallbackContext obj)
-    {
-        Jump();
-    }
-
-    private void OnDisable()
-    {
-        movement.Disable();
-        playerChar.Player.Jump.Disable();
-    }
+    //Other Scripts (Assigned automatically)
+    private CombatScript combatScript;
+    private DashThirdPerson dashScript;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        startPos = transform.position;
-        
+        moveAnim = GetComponentInChildren<Animator>();
+
+        combatScript = GetComponent<CombatScript>();
+        dashScript = GetComponent<DashThirdPerson>();
 
     }
 
@@ -93,16 +79,6 @@ public class NEWINPUTThirdPerson : MonoBehaviour
             velocity.y += gravityConstant * gravityMultiplier * Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Jump();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            transform.position = startPos;
-        }
-
 
         if (isGrounded == false)
         {
@@ -114,25 +90,70 @@ public class NEWINPUTThirdPerson : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        playerChar = new PlayerChar();
+    }
+
+    private void OnEnable()
+    {
+        movement = playerChar.Player.Movement;
+        movement.Enable();
+
+        playerChar.Player.Jump.performed += DoJump;
+        playerChar.Player.Jump.Enable();
+
+        playerChar.Player.Attack.performed += DoAttack;
+        playerChar.Player.Attack.Enable();
+
+        playerChar.Player.Dash.performed += DoDash;
+        playerChar.Player.Dash.Enable();
+    }
+
+    private void DoDash(InputAction.CallbackContext obj)
+    {
+        dashScript.StartDash();
+    }
+
+    private void DoAttack(InputAction.CallbackContext obj)
+    {
+        combatScript.SwordAttack();
+    }
+
+    private void DoJump(InputAction.CallbackContext obj)
+    {
+        Jump();
+    }
+
+    private void OnDisable()
+    {
+        movement.Disable();
+        playerChar.Player.Jump.Disable();
+        playerChar.Player.Attack.Disable();
+        playerChar.Player.Dash.Disable();
+    }
+
     void Jump()
     {
-        Debug.Log("Jumping");
-        jumpYPos = transform.position.y;
-        velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityConstant * gravityMultiplier);
-        moveAnim.SetTrigger("Jump");
+        if (isGrounded)
+        {
+            Debug.Log("Jumping");
+            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityConstant * gravityMultiplier);
+            moveAnim.SetTrigger("Jump");
+        }
     }
 
     public void Move()
     {
         controller.Move(velocity * Time.deltaTime);
 
-        float horizontal = movement.ReadValue<Vector2>().y;
-        float vertical = movement.ReadValue<Vector2>().x;                              //Input for vertical movement
+        float horizontal = movement.ReadValue<Vector2>().x;
+        float vertical = movement.ReadValue<Vector2>().y;                              //Input for vertical movement
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;       //Creates a directional variable bazed on which axes is used and normalizes it
 
         if (direction.magnitude >= 0.1f)                                             //if the direction variable is greater than 0.1
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;      //returns rotational value
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + MainCamera.eulerAngles.y;      //returns rotational value
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
