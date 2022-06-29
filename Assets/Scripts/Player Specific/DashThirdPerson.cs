@@ -5,7 +5,7 @@ using UnityEngine;
 public class DashThirdPerson : MonoBehaviour
 {
 
-    ThirdPersonBrackeys moveScript;                                                         //Reference to the Third Person movement script
+    NEWINPUTThirdPerson moveScript;                                                         //Reference to the Third Person movement script
 
     [Header("Dash time variables")]
     [Tooltip("Sets how fast the dash should be. Default is 20.")]
@@ -16,16 +16,12 @@ public class DashThirdPerson : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveScript = GetComponent<ThirdPersonBrackeys>();                                   //Grabs movement script at start frame
+        moveScript = GetComponent<NEWINPUTThirdPerson>();                                   //Grabs movement script at start frame
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartDash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))                                            //If input is pushed, starts coroutine
-        {
-            StartCoroutine(Dash());
-        }
+        StartCoroutine(Dash());
     }
 
     IEnumerator Dash()

@@ -9,19 +9,10 @@ public class CombatScript : MonoBehaviour
     
     public bool CanAttack = true;
     public float AttackCooldown = 1.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            SwordAttack();
-        }
+        animationController = GetComponentInChildren<Animator>();
     }
 
     public void SwordAttack()
